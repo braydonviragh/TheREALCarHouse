@@ -1,0 +1,42 @@
+﻿@model CarHouseThree.Models.UserDto
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserFname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserFname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserLname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserLname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "List")
+</p>

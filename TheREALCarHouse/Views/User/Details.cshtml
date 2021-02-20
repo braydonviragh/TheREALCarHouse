@@ -1,0 +1,21 @@
+﻿@model CarHouseThree.Models.ViewModels.ShowUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container col-lg-12">
+    <div class="row">
+        <h4>User</h4>
+        @Html.DisplayFor(model => model.user);
+
+        
+
+    </div>
+    
+</div>
+<p>
+    @Html.ActionLink("Back to List", "List")
+</p>
