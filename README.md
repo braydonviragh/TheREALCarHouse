@@ -5,3 +5,4 @@ Basic CRUD for Db Entities such as Vehicles, Users, and Posts
 - Creating vehicle (as need to pass along info to vehicle AND user db).
 - Improving layout/view of all "details"
 - CRUD for "Posts" ("List" View Complete)
+- "Delete" for Users, Vehicles and Posts
