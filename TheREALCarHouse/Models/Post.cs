@@ -37,7 +37,7 @@ namespace CarHouseThree.Models
         public string VehicleModel { get; set; }
         public string VehicleYear { get; set; }
         public string VehicleColour { get; set; }
-        public string VehiclKMs { get; set; }
+        public string VehicleKMs { get; set; }
 
     }
 }

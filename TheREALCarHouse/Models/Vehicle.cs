@@ -31,6 +31,7 @@ namespace CarHouseThree.Models
         public string VehicleMake { get; set; }
 
         public string UserName { get; set; }
+        public string UserEmail { get; set; }
 
         public string VehicleModel { get; set; }
         public string VehicleYear { get; set; }

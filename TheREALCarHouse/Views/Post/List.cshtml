@@ -4,7 +4,7 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Vehicles For Sale</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -39,7 +39,7 @@
             <br />
             <strong>Coloir: </strong> @Html.DisplayFor(modelItem => item.VehicleColour)
             <br />
-            <strong>Mileage: </strong> @Html.DisplayFor(modelItem => item.VehiclKMs) <p>KM</p>
+            <strong>Mileage: </strong> @Html.DisplayFor(modelItem => item.VehicleKMs) <p>KM</p>
             <br />
            
         </td>
@@ -47,9 +47,9 @@
             <strong>Price (Thousands): </strong>$@Html.DisplayFor(modelItem => item.PostPrice)
         </td>
         <td>
-    
-        
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
+
+            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
         </td>
     </tr>
 }

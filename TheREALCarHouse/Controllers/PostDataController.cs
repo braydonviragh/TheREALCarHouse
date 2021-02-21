@@ -34,7 +34,7 @@ namespace TheREALCarHouse.Controllers
                     VehicleModel = post.Vehicle.VehicleModel,
                     VehicleYear = post.Vehicle.VehicleYear,
                     VehicleColour = post.Vehicle.VehicleColour,
-                    VehiclKMs = post.Vehicle.VehicleKMs
+                    VehicleKMs = post.Vehicle.VehicleKMs
                 };
                 PostDtos.Add(newPost);
             }
@@ -43,6 +43,41 @@ namespace TheREALCarHouse.Controllers
             
             return (PostDtos);
         }
+
+        //for finding Posts
+        [HttpGet]
+        [ResponseType(typeof(PostDto))]
+
+        public IHttpActionResult FindPost(int id)
+        {
+            //find post data
+            Post Post = db.Posts.Find(id);
+            //need to do db search for Posts based off of id
+
+            if (Post == null)
+            {
+                return NotFound();
+
+            }
+            //Now put into PostDto form
+
+            PostDto PostDto = new PostDto
+            {
+                PostID = Post.PostID,
+                PostPrice = (int)Post.PostPrice,
+                UserName = Post.User.UserFname,
+                UserEmail = Post.User.UserEmail,
+                VehicleMake = Post.Vehicle.VehicleMake,
+                VehicleModel = Post.Vehicle.VehicleModel,
+                VehicleYear = Post.Vehicle.VehicleYear,
+                VehicleColour = Post.Vehicle.VehicleColour,
+                VehicleKMs = Post.Vehicle.VehicleKMs,
+
+            };
+
+            return Ok(PostDto);
+        }
+
 
         // GET: api/PostData/5
         [ResponseType(typeof(Post))]

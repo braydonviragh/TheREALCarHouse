@@ -1,0 +1,29 @@
+﻿@model CarHouseThree.Models.ViewModels.ShowPost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Post: #@Html.DisplayFor(model => model.post.PostID)</h2>
+
+<div class="container text-left">
+    <h4>For Sale: @Html.DisplayFor(model => model.post.VehicleYear) @Html.DisplayFor(model => model.post.VehicleMake) @Html.DisplayFor(model => model.post.VehicleModel) </h4>
+    <h3 style="color: green" ;>$@Html.DisplayFor(model => model.post.PostPrice)</h3>
+
+    <i>Image to be added in future update</i>
+
+</div>
+
+<h2>Seller Details</h2>
+<div class="container text-left">
+    <h4 style="font-weight: bold;">Name:</h4>
+    <p>@Html.DisplayFor(model => model.post.UserName)</p>
+    <h4 style="font-weight: bold;">Contact:</h4>
+    <p>@Html.DisplayFor(model => model.post.UserEmail)</p>
+
+</div>
+<br />
+<p>
+
+    @Html.ActionLink("Back to List", "List")
+</p>

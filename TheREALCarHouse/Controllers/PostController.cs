@@ -53,6 +53,27 @@ namespace TheREALCarHouse.Controllers
             }
         }
 
+        // GET: Post/Details/{id}
+
+        public ActionResult Details(int id)
+        {
+            ShowPost ViewModel = new ShowPost();
+            string url = "postdata/findpost/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                //Add this API data to POST DTO
+                PostDto SelectedPost = response.Content.ReadAsAsync<PostDto>().Result;
+                ViewModel.post = SelectedPost;
+
+                return View(ViewModel);
+            }else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
 
         // GET: Post
         public ActionResult Index()
@@ -60,11 +81,6 @@ namespace TheREALCarHouse.Controllers
             return View();
         }
 
-        // GET: Post/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Post/Create
         public ActionResult Create()

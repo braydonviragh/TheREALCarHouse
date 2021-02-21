@@ -4,27 +4,34 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Vehicle Info: # @Html.DisplayFor(model => model.vehicle.VehicleID)</h2>
+ 
+<div class="container text-left">
+    <h4>@Html.DisplayFor(model => model.vehicle.VehicleYear) @Html.DisplayFor(model => model.vehicle.VehicleMake) @Html.DisplayFor(model => model.vehicle.VehicleModel) </h4>
 
-<div>
-    <h4>Vehicle</h4>
-    <hr />
-    <dl class="dl-horizontal">
-     
+    <i>Image to be added in future update</i>
+    <br/>
+    <br/>
 
-        <dt>
-           Vehicle
-        </dt>
+    <strong>Mileage(Thousands): </strong>@Html.DisplayFor(model => model.vehicle.VehicleKMs) KMs
+    <br/>
+    <strong>Colour: </strong>@Html.DisplayFor(model => model.vehicle.VehicleColour)
 
-        <dd>
-            @Html.DisplayFor(model => model.vechicle);
-        </dd>
-
-      
-
-    </dl>
 </div>
+<h2>Owner Information</h2>
+<div class="container text-left">
+    <strong>Owner Name: </strong> @Html.DisplayFor(modelItem => modelItem.user.UserFname)
+    <br/>
+    <strong>Owner Email: </strong> @Html.DisplayFor(model => model.user.UserEmail)
+    
+
+
+
+</div> 
+
+
+<br />
 <p>
-   
+
     @Html.ActionLink("Back to List", "List")
 </p>

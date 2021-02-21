@@ -60,7 +60,7 @@ namespace TheREALCarHouse.Controllers
         }
 
 
-        // GET: User/Details/5
+        // GET: User/Details/{id}
         public ActionResult Details(int id)
         {
             ShowUser ViewModel = new ShowUser();

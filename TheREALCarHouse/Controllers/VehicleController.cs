@@ -67,7 +67,9 @@ namespace TheREALCarHouse.Controllers
             {
                 //Add api data to vehicleDto
                 VehicleDto SelectedVehicle = response.Content.ReadAsAsync<VehicleDto>().Result;
-                ViewModel.vechicle = SelectedVehicle;
+                UserDto SelectedUser = response.Content.ReadAsAsync<UserDto>().Result;
+                ViewModel.vehicle = SelectedVehicle;
+                ViewModel.user = SelectedUser;
 
                 return View(ViewModel);
            } else

@@ -5,12 +5,8 @@ using System.Web;
 
 namespace CarHouseThree.Models.ViewModels
 {
-    public class ShowVehicle
+    public class ShowPost
     {
-
-        public VehicleDto vehicle { get; set; }
-        public UserDto user { get; set; }
-
-
+        public PostDto post { get; set; }
     }
 }
