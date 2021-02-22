@@ -10,3 +10,6 @@ Basic CRUD for Db Entities such as Vehicles, Users, and Posts
 - Improving layout/view of all "details"
 - CRUD for "Posts" ("List" View Complete)
 - "Delete" for Users, Vehicles and Posts
+
+
+## Please Leave Feedback re: "Add" Vehicle (as I cant without user information. I want the app to detect the userid based on the when the user has signed in. Is it too late to add authentication to project? 
