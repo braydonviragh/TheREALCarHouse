@@ -4,18 +4,25 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Customer Details</h2>
 
-<div class="container col-lg-12">
-    <div class="row">
-        <h4>User</h4>
-        @Html.DisplayFor(model => model.user);
+<div class="container text-left">
+    <h4>ID#@Html.DisplayFor(model => model.user.UserID) @Html.DisplayFor(model => model.user.UserFname) @Html.DisplayFor(model => model.user.UserLname)</h4>
 
-        
+    <i>Image to be added in future update</i>
+    <br />
+    <br />
 
-    </div>
+    <strong>Email: </strong>@Html.DisplayFor(model => model.user.UserEmail) 
     
+
 </div>
+
+
+
+
+
+
 <p>
     @Html.ActionLink("Back to List", "List")
 </p>
