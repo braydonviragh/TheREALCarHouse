@@ -15,7 +15,21 @@ namespace TheREALCarHouse.Controllers
     public class VehicleDataController : ApiController
     {
         private TheRealCarHouseDataContext db = new TheRealCarHouseDataContext();
+        //This code is mostly scaffolded from the base models and database context
+        //New > WebAPIController with Entity Framework Read/Write Actions
+        //Choose model "Vehicle"
+        //Choose context "The Real Car House Data Context"
+        //Note: The base scaffolded code needs many improvements for a fully
+        //functioning MVP.
 
+
+        /// <summary>
+        /// Gets a list or Vehicles in the database alongside a status code (200 OK).
+        /// </summary>
+        /// <returns>A list of Vehicles including their ID, make, model, year, KM's, colour and, User Email & UserName and URL.</returns>
+        /// <example>
+        /// GET: api/VehicleData/GetVehicles
+        /// </example>
         // GET: api/Vehicledata/GetVehicles
         public IEnumerable<VehicleDto> GetVehicles()
         {
@@ -33,6 +47,7 @@ namespace TheREALCarHouse.Controllers
                     VehicleColour = vehicle.VehicleColour,
                     VehicleKMs = vehicle.VehicleKMs,
                     UserName = vehicle.User.UserFname,
+                    UserEmail = vehicle.User.UserEmail
                   
                     
                 };
@@ -41,7 +56,14 @@ namespace TheREALCarHouse.Controllers
 
             return (VehicleDtos);
         }
-
+        /// <summary>
+        /// Finds a particular Vehicle in the database with a 200 status code. If the Vehicle is not found, return 404.
+        /// </summary>
+        /// <param name="id">The Vehicle id</param>
+        /// <returns>Information about the Vehicle, including Vehicle id, make, model, colour, year, user name and user email</returns>
+        // <example>
+        // GET: api/VehicleData/FindVehicle/5
+        // </example>
         //for finding vehicles
         [HttpGet]
         [ResponseType(typeof(VehicleDto))]
@@ -66,6 +88,8 @@ namespace TheREALCarHouse.Controllers
                 VehicleYear = Vehicle.VehicleYear,
                 VehicleColour = Vehicle.VehicleColour,
                 VehicleKMs = Vehicle.VehicleKMs,
+                UserName = Vehicle.User.UserFname,
+                UserEmail = Vehicle.User.UserEmail,
             };
 
             return Ok(VehicleDto);
@@ -77,9 +101,17 @@ namespace TheREALCarHouse.Controllers
 
 
 
+        /// <summary>
+        /// Finds a particular Vehicle in the database with a 200 status code. If the Vehicle is not found, return 404.
+        /// </summary>
+        /// <param name="id">The Vehicle id</param>
+        /// <returns>Information about the Vehicle, including Vehicle id, make, model, colour, year, user name and user email</returns>
+        // <example>
+        // GET: api/VehicleData/FindVehicle/5
+        // </example>
+        //for finding vehicles
 
-
-        // GET: api/Vehicles/5
+        // GET: api/VehicleData/GetVehicle/5
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult GetVehicle(int id)
         {
@@ -89,8 +121,18 @@ namespace TheREALCarHouse.Controllers
                 return NotFound();
             }
 
+
             return Ok(vehicle);
         }
+        /// <summary>
+        /// Adds a Vehicle to the database.
+        /// </summary>
+        /// <param name="Vehicle">A Vehicle object. Sent as POST form data.</param>
+        /// <returns>status code 200 if successful. 400 if unsuccessful</returns>
+        /// <example>
+        /// POST: api/VehicleData/AddVehicle
+        ///  FORM DATA: Vehicle JSON Object
+        /// </example>
         //Add a vehicle 
         [ResponseType(typeof(Vehicle))]
         [HttpPost]
@@ -158,6 +200,14 @@ namespace TheREALCarHouse.Controllers
             return CreatedAtRoute("DefaultApi", new { id = vehicle.VehicleID }, vehicle);
         }
 
+        /// <summary>
+        /// Deletes a Vehicle in the database
+        /// </summary>
+        /// <param name="id">The id of the Vehicle to delete.</param>
+        /// <returns>200 if successful. 404 if not successful.</returns>
+        /// <example>
+        /// POST: api/VehicleData/DeleteVehicle/5
+        /// </example>
         // DELETE: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult DeleteVehicle(int id)
@@ -183,6 +233,12 @@ namespace TheREALCarHouse.Controllers
             base.Dispose(disposing);
         }
 
+
+        /// <summary>
+        /// Finds a Vehicle in the system. Internal use only.
+        /// </summary>
+        /// <param name="id">The Vehicle id</param>
+        /// <returns>TRUE if the Vehicle exists, false otherwise.</returns>
         private bool VehicleExists(int id)
         {
             return db.Vehicles.Count(e => e.VehicleID == id) > 0;

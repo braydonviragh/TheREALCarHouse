@@ -16,6 +16,20 @@ namespace TheREALCarHouse.Controllers
     {
         private TheRealCarHouseDataContext db = new TheRealCarHouseDataContext();
 
+        //This code is mostly scaffolded from the base models and database context
+        //New > WebAPIController with Entity Framework Read/Write Actions
+        //Choose model "Post"
+        //Choose context "Varsity Data Context"
+        //Note: The base scaffolded code needs many improvements for a fully
+        //functioning MVP.
+
+
+        /// <summary>
+        /// Gets a list or Posts in the database alongside a status code (200 OK).
+        /// </summary>
+        /// <returns>A list of Posts including their ID, the user information and the vehicle information</returns>
+        /// <example>
+        /// GET: api/PostData/GetPosts
         // GET: api/PostData
         public IEnumerable<PostDto> GetPosts()
         {
@@ -44,6 +58,15 @@ namespace TheREALCarHouse.Controllers
             return (PostDtos);
         }
 
+
+        /// <summary>
+        /// Finds a particular Post in the database with a 200 status code. If the Post is not found, return 404.
+        /// </summary>
+        /// <param name="id">The Post id</param>
+        /// <returns>The post with the matching id. Includes the user information and the vehicle information</returns>
+        // <example>
+        // GET: api/PostData/FindPost/5
+        // </example>
         //for finding Posts
         [HttpGet]
         [ResponseType(typeof(PostDto))]
@@ -77,6 +100,77 @@ namespace TheREALCarHouse.Controllers
 
             return Ok(PostDto);
         }
+        /// <summary>
+        /// Updates a Post in the database given information about the Post.
+        /// </summary>
+        /// <param name="id">The Post id</param>
+        /// <param name="Post">A Post object. Received as POST data.</param>
+        /// <returns></returns>
+        /// <example>
+        /// POST: api/PostData/UpdatePost/5
+        /// FORM DATA: Post JSON Object
+        /// </example>
+        /// 
+
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdatePost(int id, [FromBody] Post Post)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != Post.PostID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(Post).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+        /// <summary>
+        /// Adds a Post to the database.
+        /// </summary>
+        /// <param name="Post">A Post object. Sent as POST form data.</param>
+        /// <returns>status code 200 if successful. 400 if unsuccessful</returns>
+        /// <example>
+        /// POST: api/Posts/AddPost
+        ///  FORM DATA: Post JSON Object
+        /// </example>
+        [ResponseType(typeof(Post))]
+        [HttpPost]
+        public IHttpActionResult AddPost([FromBody] Post Post)
+        {
+            //Will Validate according to data annotations specified on model
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Posts.Add(Post);
+            db.SaveChanges();
+
+            return Ok(Post.PostID);
+        }
+
 
 
         // GET: api/PostData/5
