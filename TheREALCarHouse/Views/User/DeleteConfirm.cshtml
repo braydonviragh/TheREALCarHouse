@@ -1,0 +1,49 @@
+﻿@model CarHouseThree.Models.UserDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Delete Confirm</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserFname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserFname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserLname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserLname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "User", new { id = Model.UserID }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>

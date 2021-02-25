@@ -171,6 +171,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -214,6 +215,8 @@
     <Content Include="Views\Vehicle\n.cshtml" />
     <Content Include="Views\Post\List.cshtml" />
     <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\User\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

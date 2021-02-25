@@ -236,6 +236,8 @@ namespace TheREALCarHouse.Controllers
         /// <example>
         /// POST: api/userData/Deleteuser/5
         /// </example>
+
+        [HttpPost]
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {

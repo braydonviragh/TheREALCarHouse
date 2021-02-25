@@ -88,20 +88,30 @@ namespace TheREALCarHouse.Controllers
             return View();
         }
 
-        // POST: Post/Create
+        /// POST: Post/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken()]
+        public ActionResult Create(Post PostInfo)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            
+            string url = "postdata/addpost";
+            Debug.WriteLine(jss.Serialize(PostInfo));
+            HttpContent content = new StringContent(jss.Serialize(PostInfo));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+
+                int Postid = response.Content.ReadAsAsync<int>().Result;
+                return RedirectToAction("Details", new { id = Postid });
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
+
         }
 
         // GET: Post/Edit/5
