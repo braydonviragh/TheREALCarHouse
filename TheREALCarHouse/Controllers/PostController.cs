@@ -137,25 +137,50 @@ namespace TheREALCarHouse.Controllers
         }
 
         // GET: Post/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "postdata/findpost/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            //Can catch the status code (200 OK, 301 REDIRECT), etc.
+            //Debug.WriteLine(response.StatusCode);
+            if (response.IsSuccessStatusCode)
+            {
+                //Put data into Post data transfer object
+                PostDto SelectedPost = response.Content.ReadAsAsync<PostDto>().Result;
+                return View(SelectedPost);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         // POST: Post/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken()]
+        public ActionResult Delete(int id)
         {
-            try
+            string url = "postdata/deletepost/" + id;
+            //post body is empty
+            HttpContent content = new StringContent("");
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            //Can catch the status code (200 OK, 301 REDIRECT), etc.
+            //Debug.WriteLine(response.StatusCode);
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
+    
 }

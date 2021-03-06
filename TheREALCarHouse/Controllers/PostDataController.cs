@@ -237,19 +237,19 @@ namespace TheREALCarHouse.Controllers
         }
 
         // DELETE: api/PostData/5
-        [ResponseType(typeof(Post))]
+        [HttpPost]
         public IHttpActionResult DeletePost(int id)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Post Post = db.Posts.Find(id);
+            if (Post == null)
             {
                 return NotFound();
             }
 
-            db.Posts.Remove(post);
+            db.Posts.Remove(Post);
             db.SaveChanges();
 
-            return Ok(post);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

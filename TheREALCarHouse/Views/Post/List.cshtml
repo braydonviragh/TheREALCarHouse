@@ -3,55 +3,55 @@
 @{
     ViewBag.Title = "List";
 }
-
-<h2>Vehicles For Sale</h2>
-
-<p>
+<head>
+    <link rel="stylesheet" href="~/Content/post.css" type="text/css" />
+</head>
+<div class="container spc text-center page-title"><h1>Vehicles For Sale</h1><p class="create">
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Seller
-        </th>
-        <th>
-            Vehicle
-        </th>
-        <th>
-            $Price$
-        </th>
-        <th></th>
-    </tr>
+</p></div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-          <strong>Seller Name: </strong>  @Html.DisplayFor(modelItem => item.UserName)
-            <br />
-          <strong>Contact: </strong>  @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-           <strong>Make: </strong> @Html.DisplayFor(modelItem => item.VehicleMake)
-            <br />
-            <strong>Model: </strong>  @Html.DisplayFor(modelItem => item.VehicleModel)
-            <br />
-            <strong>Year: </strong> @Html.DisplayFor(modelItem => item.VehicleYear)
-            <br />
-            <strong>Colour: </strong> @Html.DisplayFor(modelItem => item.VehicleColour)
-            <br />
-            <strong>Mileage: </strong> @Html.DisplayFor(modelItem => item.VehicleKMs) <p>KM</p>
-            <br />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-md-4">
+                <div class="product-container">
+                    <div class="product-image">
+                        <span class="hover-link"></span>
+                        <span class="product-link">@Html.ActionLink("Details", "Details", new { id = item.PostID }) @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.PostID })</span>
+
+
+                        <div class="product-description">
+                            <div class="product-label">
+                                <div class="product-name">
+                                    <h1>@Html.DisplayFor(modelItem => item.VehicleYear) @Html.DisplayFor(modelItem => item.VehicleMake)  @Html.DisplayFor(modelItem => item.VehicleModel)  </h1>
+                                    <p class="price">$@Html.DisplayFor(modelItem => item.PostPrice)</p>
+                                    <p>Sold by: @Html.DisplayFor(modelItem => item.UserName)</p>
+                                    <p>Email: @Html.DisplayFor(modelItem => item.UserEmail) </p>
+                                </div>
+                            </div>
+                            <div class="product-option">
+                                <div class="product-size">
+                                    <h3>Details</h3>
+                                    <p>Colour: @Html.DisplayFor(modelItem => item.VehicleColour)</p>
+                                    <p>KM's @Html.DisplayFor(modelItem => item.VehicleKMs)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
            
-        </td>
-        <td>
-            <strong>Price (Thousands): </strong>$@Html.DisplayFor(modelItem => item.PostPrice)
-        </td>
-        <td>
 
-            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
-        </td>
-    </tr>
-}
 
-</table>
+
+
+
+
+        }
+    </div>
+    </div>
+
+    

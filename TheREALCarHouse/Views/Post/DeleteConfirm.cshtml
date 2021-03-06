@@ -1,0 +1,70 @@
+﻿@model CarHouseThree.Models.PostDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<div class="container">
+    <h2>Delete Confirm? You Sure?</h2>
+    @using (Html.BeginForm("Delete", "Post", new { id = Model.PostID }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>
+
+
+
+<div class="product-content product-wrap clearfix product-deatil">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+            <h2 class="name">
+                @Html.DisplayFor(model => model.VehicleYear) @Html.DisplayFor(model => model.VehicleMake) @Html.DisplayFor(model => model.VehicleModel)
+
+            </h2>
+
+
+
+            <hr />
+            <div class="description description-tabs">
+                <ul id="myTab" class="nav nav-pills">
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="more-information">
+                        <br />
+                        <strong>Details</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.VehicleYear) @Html.DisplayFor(model => model.VehicleMake) @Html.DisplayFor(model => model.VehicleModel)
+                            <br /> Colour:   @Html.DisplayFor(model => model.VehicleColour)
+                            <br /> Kilometers: @Html.DisplayFor(model => model.VehicleKMs)
+
+                        </p>
+                        <strong>Seller</strong>
+
+                        <p>
+                            Name: @Html.DisplayFor(model => model.UserName)
+                        </p>
+                        <strong>Contact: </strong>
+                        <p>@Html.DisplayFor(model => model.UserEmail)</p>
+                    </div>
+                    <hr />
+                    <div class="row">
+                       
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="btn-group pull-right">
+
+                                <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> @Html.ActionLink("Back to List", "List")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- end product -->
+
+       
+    </div>

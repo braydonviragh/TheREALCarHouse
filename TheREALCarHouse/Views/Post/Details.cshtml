@@ -5,8 +5,66 @@
 }
 
 <h2>Post: #@Html.DisplayFor(model => model.post.PostID)</h2>
+<div class="col-sm-12 col-md-12 col-lg-12">
+<!-- product -->
+<div class="product-content product-wrap clearfix product-deatil">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+            <h2 class="name">
+                @Html.DisplayFor(model => model.post.VehicleYear) @Html.DisplayFor(model => model.post.VehicleMake) @Html.DisplayFor(model => model.post.VehicleModel)
 
-<div class="container text-left">
+            </h2>
+        
+          
+           
+            <hr />
+            <div class="description description-tabs">
+                <ul id="myTab" class="nav nav-pills">
+                   
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="more-information">
+                        <br />
+                        <strong>Details</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.post.VehicleYear) @Html.DisplayFor(model => model.post.VehicleMake) @Html.DisplayFor(model => model.post.VehicleModel)
+                            <br /> Colour:   @Html.DisplayFor(model => model.post.VehicleColour)
+                            <br /> Kilometers: @Html.DisplayFor(model => model.post.VehicleKMs)
+                           
+                        </p>
+                        <strong>Seller</strong>
+                    
+                        <p>
+                            Name: @Html.DisplayFor(model => model.post.UserName) 
+                        </p>
+                        <strong>Contact: </strong>
+                        <p>@Html.DisplayFor(model => model.post.UserEmail)</p>
+                    </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a class="btn btn-success btn-lg">Asking Price: $ @Html.DisplayFor(model => model.post.PostPrice)</a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="btn-group pull-right">
+   
+                        <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> @Html.ActionLink("Back to List", "List")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end product -->
+     </div>
+</div>
+    </div>
+
+
+
+
+
+<!---<div class="container text-left">
     <h4>For Sale: @Html.DisplayFor(model => model.post.VehicleYear) @Html.DisplayFor(model => model.post.VehicleMake) @Html.DisplayFor(model => model.post.VehicleModel) </h4>
     <h3 style="color: green" ;>$@Html.DisplayFor(model => model.post.PostPrice)</h3>
 
@@ -26,4 +84,4 @@
 <p>
 
     @Html.ActionLink("Back to List", "List")
-</p>
+</p>-->
